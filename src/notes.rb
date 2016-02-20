@@ -2,15 +2,25 @@ module Sheyi
 
 	class NotesApplication
 
-		attr_reader :author
+		attr_accessor :author
+		attr_reader :notes
+
 
 		def initialize(author)
+			author = clean_string(author)
 			if validate(author)
 				@author = author
 				@notes = []
 			else
 				raise Exception.new "No name supplied!"
 			end
+
+			@list_lambda = lambda { |i|
+				puts "\n"
+				puts "Note ID: #{@notes.index(i)}"
+				puts i[:content]+ "\n\n"
+				puts "By Author #{i[:author]} \n\n"
+			}
 		end
 
 		def create(content)
@@ -21,47 +31,52 @@ module Sheyi
 				note[:content] = content
 
 				@notes.push(note)
+				note
 			else
 				puts_error("Your content cant be empty!")
 			end
 		end
 
 		def list()
-
-			for i in @notes do 
-				puts "Note ID: #{@notes.index(i)}"
-				puts i[:content]
-				puts "By Author #{i[:author]} \n\n"
+			
+			for i in @notes do
+				@list_lambda.call(i)
 			end
 
 			if @notes.length == 0
-				puts "No notes yet! Create one by using the create keyword"
+				puts "=== No notes yet! Create one"
 			end
+
+			@notes
 		end
 
 		def get(note_id)
 			if @notes[note_id] != nil
 				return @notes[note_id][:content]
 			else
-				puts "I could not find that note try another ID"
+				#puts "=== I could not find that note try another ID"
+				nil
 			end
 		end
 
 		def search(text)
 			founds = []
+			puts "<<<< Showing results for '\e[#{32}m #{text}\e[0m' >>>>"
 
+			match = false
 			for i in @notes do
-				if (i[:content] =~ /(.*)text(.*)/)
-					founds.push(j)
+				 
+				if (i[:content] =~ /#{text}/i)
+					@list_lambda.call(i)
+					founds.push(@notes.index(i))
+					match = true
 				end
+				
+				puts "=== No matches found" unless match
 
-				if founds.size == 0
-					puts "No matches found" 
-				else
-					#puts "Showing results for \"text\" "
-					puts (founds)
-				end
 			end
+
+			founds
 		end
 
 		def delete(note_id)
@@ -71,12 +86,11 @@ module Sheyi
 		end
 
 		def edit(note_id, content)
-			if validate(content)
-				if @notes[note_id] != nil
-					@notes[note_id][:content] = content
-				end
+			if validate(content) && (@notes[note_id] != nil)
+				@notes[note_id][:content] = content
 			else
-				puts_error("You input is invalid")
+				#puts_error("You input is invalid")
+				nil
 			end
 		end
 
@@ -88,7 +102,13 @@ module Sheyi
 			end
 		end
 
-		def puts_error(msg = "An error occured")
+		def clean_string(str)
+			str.strip!
+			#str.gsub!(/[\\\*\/]/, "") #Removing "/", "\" or "*" from string
+			str
+		end
+
+		def puts_error(msg = "=== ***An error occured***")
 
 			puts msg
 		end

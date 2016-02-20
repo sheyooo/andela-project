@@ -8,7 +8,7 @@ RSpec.describe Sheyi::NotesApplication do
 		expect {Sheyi::NotesApplication.new ""}.to raise_error "No name supplied!"
 	end
 
-	it "raises error if no name is supplied" do 
+	it "raises error if invalid name is supplied" do 
 
 		expect {Sheyi::NotesApplication.new "\n\n\n\t"}.to raise_error "No name supplied!"
 	end
@@ -30,6 +30,45 @@ RSpec.describe Sheyi::NotesApplication do
 
 		res = app.create("Andela")
 		expect(res).to eq ({author: "Tester", content: "Andela"})
+	end
+
+	it "create function should store in instance var" do 
+		app = Sheyi::NotesApplication.new "Tester"
+		app.create("new note in var")
+
+		expect(app.notes[0]).to eq ({author: "Tester", content: "new note in var"})
+	end
+
+	it "create function should store in instance var more than one note" do 
+		app = Sheyi::NotesApplication.new "Tester"
+		app.create("new note in var")
+		app.create("another note in var")
+
+		expect(app.notes[0]).to eq ({author: "Tester", content: "new note in var"})
+		expect(app.notes[1]).to eq ({author: "Tester", content: "another note in var"})
+		expect(app.notes.length).to eq 2
+	end
+
+	it "edit function should edit appropriately" do 
+		app = Sheyi::NotesApplication.new "Tester"
+		app.create("new note in var")
+		app.edit(0, "edited text")
+
+		expect(app.notes[0]).to eq ({author: "Tester", content: "edited text"})
+	end
+
+	it "the delete function should delete appropriately" do 
+		app = Sheyi::NotesApplication.new "Tester"
+		app.create("a note")
+		app.delete(0)
+
+		expect(app.notes.length).to eq 0
+	end
+
+	it "create function should store name in @author var" do 
+		app = Sheyi::NotesApplication.new "Tester"
+
+		expect(app.author).to eq "Tester"
 	end
 
 	it "the list function should return empty array if not populated" do 
