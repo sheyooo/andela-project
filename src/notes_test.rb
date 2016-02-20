@@ -153,12 +153,4 @@ RSpec.describe Sheyi::NotesApplication do
 		expect(matches).to eq [0, 1]
 	end
 
-	
-
-	
-
-
-
-
-
 end
