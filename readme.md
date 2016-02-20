@@ -13,7 +13,7 @@ It
 
 ## Interactive command line interface
 It also features a cmd interface for interactivity.
-To use the command line interface run `ruby src/notes_user.rb` 
+To use the command line interface run `ruby notes.rb` 
   
   
 ### Test
