@@ -54,7 +54,6 @@ module Sheyi
       if @notes[note_id] != nil
         return @notes[note_id][:content]
       else
-        #puts "=== I could not find that note try another ID"
         nil
       end
     end
@@ -89,7 +88,6 @@ module Sheyi
       if validate(content) && (@notes[note_id] != nil)
         @notes[note_id][:content] = content
       else
-        #puts_error("You input is invalid")
         nil
       end
     end
@@ -104,7 +102,6 @@ module Sheyi
 
     def clean_string(str)
       str.strip!
-      #str.gsub!(/[\\\*\/]/, "") #Removing "/", "\" or "*" from string
       str
     end
 
@@ -116,11 +113,3 @@ module Sheyi
 
   end
 end
-
-=begin
-  app = Sheyi::NotesApplication.new "Sheyi"
-  app.create("h")
-  app.create("ggh")
-  puts app.list
-
-=end

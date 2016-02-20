@@ -1,5 +1,3 @@
-#$LOAD_PATH << '.'
-
 require_relative "notes"
 
 module InteractiveNote
@@ -134,9 +132,5 @@ module InteractiveNote
 
     menu
   end
-
-
-
-  InteractiveNote.main
 
 end
