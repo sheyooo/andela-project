@@ -15,8 +15,6 @@ module InteractiveNote
       main
     end
     puts "=== Welcome, #{$app.author} \n\n"
-
-
     menu
   end
 
