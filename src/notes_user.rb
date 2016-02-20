@@ -2,10 +2,11 @@
 
 require_relative "notes"
 
+module InteractiveNote
 
   $app = nil
 
-  def main
+  def InteractiveNote.main
     puts "<<<<< Hello there, what is your name? >>>>>"
     name = gets.chomp.to_s
 
@@ -21,7 +22,7 @@ require_relative "notes"
     menu
   end
 
-  def menu
+  def InteractiveNote.menu
     puts "<<< Hello #{$app.author}, what do you want to do? >>>"
     puts "[1] ====== Create a note"
     puts "[2] ====== Read a note"
@@ -56,7 +57,7 @@ require_relative "notes"
     end
   end
 
-  def create 
+  def InteractiveNote.create 
     puts "==== Wrtie a note"
     note = gets.chomp.to_s
 
@@ -65,12 +66,12 @@ require_relative "notes"
     menu
   end
 
-  def list
+  def InteractiveNote.list
     $app.list
     menu
   end
 
-  def read
+  def InteractiveNote.read
     puts "=== What is the id of the note you want to read?"
     id = gets.chomp.to_i
     note = $app.get(id)
@@ -84,7 +85,7 @@ require_relative "notes"
     menu
   end
 
-  def edit
+  def InteractiveNote.edit
     puts "=== Which note do you want to edit, put in an ID."
     id = gets.chomp.to_i
 
@@ -102,7 +103,7 @@ require_relative "notes"
     menu
   end
 
-  def delete
+  def InteractiveNote.delete
     puts "=== Input the ID of the note you want to delete."
     id = gets.chomp.to_i
 
@@ -111,7 +112,7 @@ require_relative "notes"
     menu
   end
 
-  def search 
+  def InteractiveNote.search 
     puts "=== Input search text."
     text = gets.chomp.to_s
 
@@ -120,7 +121,7 @@ require_relative "notes"
     menu
   end
 
-  def change_user
+  def InteractiveNote.change_user
     puts "<<<< What is your name? >>>>"
     author = gets.chomp
 
@@ -136,5 +137,6 @@ require_relative "notes"
 
 
 
-  main
+  InteractiveNote.main
 
+end
