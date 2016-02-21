@@ -60,7 +60,7 @@ module Sheyi
 
     def search(text)
       founds = []
-      puts "<<<< Showing results for '\e[#{32}m #{text}\e[0m' >>>>"
+      puts "<<<< Showing results for '\e[#{32}m#{text}\e[0m' >>>>"
 
       match = false
       for i in @notes do
@@ -69,11 +69,11 @@ module Sheyi
           @list_lambda.call(i)
           founds.push(@notes.index(i))
           match = true
-        end
-        
-        puts "=== No matches found" unless match
+        end        
 
       end
+
+      puts "=== No matches found" unless match
 
       founds
     end
