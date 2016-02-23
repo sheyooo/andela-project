@@ -1,4 +1,8 @@
 require "codeclimate-test-reporter"
+CodeClimate::TestReporter.configure do |config|
+  config.git_dir = "../"
+end
+
 CodeClimate::TestReporter.start
 
 require_relative "notes"
