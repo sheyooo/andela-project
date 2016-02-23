@@ -1,7 +1,7 @@
 script: bundle exec rspec spec src/notes_test.rb
 language: ruby
 rvm:
-  - 2.2.4
+  #- 2.2.4
 addons:
   code_climate:
       repo_token: fd37ce01d389912ecfbfd30f4b65c5427d1930529311257c5316d3edb9f81bda
