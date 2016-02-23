@@ -1,7 +1,5 @@
 module Sheyi
-
   class NotesApplication
-
     attr_accessor :author
     attr_reader :notes
 
@@ -11,83 +9,60 @@ module Sheyi
         @author = author
         @notes = []
       else
-        raise Exception.new "No name supplied!"
+        raise Exception.new 'No name supplied!'
       end
-
-      @list_lambda = lambda { |i|
-        puts "\n"
-        puts "Note ID: #{@notes.index(i)}"
-        puts i[:content]+ "\n\n"
+      @list_lambda = lambda do |i|
+        puts "\nNote ID: #{@notes.index(i)}"
+        puts i[:content] + "\n\n"
         puts "By Author #{i[:author]} \n\n"
-      }
+      end
     end
 
     def create(content)
-
       if validate(content)
-        note = Hash.new
+        note = {}
         note[:author] = @author
         note[:content] = content
-
         @notes.push(note)
         note
       else
-        puts_error("Your content cant be empty!")
+        puts_error('Your content cant be empty!')
       end
     end
 
     def list
-      
-      for i in @notes do
+      @notes.each do |i|
         @list_lambda.call(i)
       end
-
-      if @notes.length == 0
-        puts "=== No notes yet! Create one"
-      end
-
+      puts '=== No notes yet! Create one' if @notes.length == 0
       @notes
     end
 
     def get(note_id)
-      if @notes[note_id] != nil
-        return @notes[note_id][:content]
-      else
-        nil
-      end
+      return @notes[note_id][:content] unless @notes[note_id].nil?
     end
 
     def search(text)
       founds = []
-      puts "<<<< Showing results for '\e[#{32}m#{text}\e[0m' >>>>"
-
+      puts "<<<< Showing results for '\e[32m#{text}\e[0m' >>>>"
       match = false
-      for i in @notes do
-         
-        if (i[:content] =~ /#{text}/i)
-          @list_lambda.call(i)
-          founds.push(@notes.index(i))
-          match = true
-        end        
-
+      @notes.each do |i|
+        next unless i[:content] =~ /#{text}/i
+        @list_lambda.call(i)
+        founds.push(@notes.index(i))
+        match = true
       end
-
-      puts "=== No matches found" unless match
-
+      puts '=== No matches found' unless match
       founds
     end
 
     def delete(note_id)
-      if @notes[note_id] != nil
-        @notes.delete_at(note_id)
-      end
+      @notes.delete_at(note_id) unless @notes[note_id].nil?
     end
 
     def edit(note_id, content)
-      if validate(content) && (@notes[note_id] != nil)
+      if validate(content) && !@notes[note_id].nil?
         @notes[note_id][:content] = content
-      else
-        nil
       end
     end
 
@@ -104,11 +79,8 @@ module Sheyi
       str
     end
 
-    def puts_error(msg = "=== ***An error occured***")
-
+    def puts_error(msg = '=== ***An error occured***')
       puts msg
     end
-
-
   end
 end
