@@ -1,6 +1,6 @@
 This is my Andela Ruby Project
 
-[![Code Climate](https://codeclimate.com/github/sheyooo/andela-project/badges/gpa.svg)](https://codeclimate.com/github/sheyooo/andela-project) [![Test Coverage](https://codeclimate.com/github/sheyooo/andela-project/badges/coverage.svg)](https://codeclimate.com/github/sheyooo/andela-project/coverage) [![Issue Count](https://codeclimate.com/github/sheyooo/andela-project/badges/issue_count.svg)](https://codeclimate.com/github/sheyooo/andela-project)
+[![Code Climate](https://codeclimate.com/github/sheyooo/andela-project/badges/gpa.svg)](https://codeclimate.com/github/sheyooo/andela-project) [![Test Coverage](https://codeclimate.com/github/sheyooo/andela-project/badges/coverage.svg)](https://codeclimate.com/github/sheyooo/andela-project/coverage) [![Issue Count](https://codeclimate.com/github/sheyooo/andela-project/badges/issue_count.svg)](https://codeclimate.com/github/sheyooo/andela-project) [![Build Status](https://travis-ci.org/sheyooo/andela-project.svg?branch=master)](https://travis-ci.org/sheyooo/andela-project)
 
 ## Notes Application
 This is a simple note application that can instantiate a new author for a particular note collection and can also switch author to create a note with the command line interface
