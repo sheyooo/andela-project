@@ -5,7 +5,6 @@ module Sheyi
     attr_accessor :author
     attr_reader :notes
 
-
     def initialize(author)
       author = clean_string(author)
       if validate(author)
