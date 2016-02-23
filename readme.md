@@ -1,4 +1,5 @@
 This is my Andela Ruby Project
+
 [![Code Climate](https://codeclimate.com/github/sheyooo/andela-project/badges/gpa.svg)](https://codeclimate.com/github/sheyooo/andela-project) [![Test Coverage](https://codeclimate.com/github/sheyooo/andela-project/badges/coverage.svg)](https://codeclimate.com/github/sheyooo/andela-project/coverage) [![Issue Count](https://codeclimate.com/github/sheyooo/andela-project/badges/issue_count.svg)](https://codeclimate.com/github/sheyooo/andela-project)
 
 ## Notes Application
